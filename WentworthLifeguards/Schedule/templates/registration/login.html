@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/Schedule/style.css' %}" />
+<head>
+    <style>
+        form {
+            text-align: center;
+
+        }
+
+        .errorlist.nonfield {
+            padding-top: 0px;
+            margin-top: 0px;
+            list-style-type: none;
+        }
+        button {
+            position: absolute;
+            left: 50%;
+            border-radius: 10px;
+            border:#000000;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            color: #000000;
+            font-family: "Century Gothic";
+            font-size: 20px;
+        }
+
+        input[type="password"], input[type="text"] {
+            border: 1px solid #000000;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border-top: hidden;
+            border-left: hidden;
+            border-right: hidden;
+            color: #000000;
+            height: 39px;
+            margin: 31px 0 0 29px;
+            padding-left: 10px;
+            width: 200px;
+            font-family: "Century Gothic";
+            font-size: 16px;
+        }
+        h1 {
+            margin-top:10%;
+            text-align: center;
+        }
+
+        {% comment %}label {
+            This can be used to edit the format of the Username: and Password: tags.
+        }{% endcomment %}
+
+        .errorlist {
+            color: firebrick;
+            margin-top: 35%;
+            background-color: transparent;
+        }
+
+    </style>
+
+
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'rota' %}">Rota</a></li>
+        <li><a href="{% url 'manage' %}">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color:white;">Welcome, {{ user.first_name }}</li>
+        {% else %}
+            <li style="float: right;"><a class="active" href="{% url 'login' %}" style="color: black;">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<h1>Login</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+
+</body>
+</html>

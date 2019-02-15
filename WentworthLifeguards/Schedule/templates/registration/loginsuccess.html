@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Schedule/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'rota' %}">Rota</a></li>
+        <li><a href="{% url 'manage' %}">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color:white">Welcome, {{ user.first_name }}</li>
+
+        {% else %}
+            <li style="float: right"><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<img style="display: block; margin-left: 20%; margin-top: 10%" src="{% static 'Schedule/happyface.png' %}" height="300" width="300">
+<h1 style="margin-left: 45%; margin-top: -10%">Welcome, {{ user.first_name }}</h1>
+
+<p style="margin-top: 10%; margin-left: 20%"><b>Where next? </b><br>
+Take a look at the Rota via the navigation bar above. Then you can make changes on the 'Manage' page.
+</p>
+</body>
+</html>

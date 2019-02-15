@@ -1,0 +1,64 @@
+/* Navigation Bar */
+
+
+#navbar ul {
+	top: 0;
+	left:0;
+	width: 100%;
+	position: fixed;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #000000;
+}
+
+
+#navbar li a {
+	float: left;
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 14px 20px;
+	text-decoration: none;
+	font-weight: normal;
+	font-family: Century Gothic;
+}
+
+#navbar li a:hover:not(.active) {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+.active {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+body, head {
+	overflow: hidden;
+	margin-top:48px;
+	margin-left:0px;
+	margin-right:0px;
+	font-family: Century Gothic;
+}
+
+h1 {
+	font-size:52px;
+	font-weight:lighter;
+	font-family: Century Gothic;
+}
+
+h2 {
+	font-size:16px;
+	font-weight:normal;
+}
+
+#headerimg img {
+	position: fixed;
+	max-width:100%;
+	height:auto;
+	max-height:100%;
+	margin-top:2px;
+	bottom:0px;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Schedule/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Rota</title>
+
+    <style>
+        table th, tr, td {
+            border: 1px solid;
+            padding: 4px;
+            color: #FFFFFF;
+            background-color: #000000;
+            border-color: transparent;
+        }
+        body, head {
+            overflow: scroll;
+            padding-left: 1%;
+        }
+
+        input[type=submit] {
+            border-radius: 0px;
+            border-color: #000000;
+            border-style: solid;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            color: #000000;
+            font-family: "Century Gothic";
+            font-size: 14.5px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a class="active" href="{% url 'rota' %}" style="color: black">Rota</a></li>
+        <li><a href="{% url 'manage' %}">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color: white;">Welcome, {{ user.first_name }}</li>
+
+        {% else %}
+            <li style="float: right";><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+<h1>This Month's Rota</h1>
+<p>
+<div id="ProvisionalRotaLink">
+Next Month's Provisional Rota
+<form action="/provisionalrota" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Provisional Rota" name = "Provisional Rota">
+</form>
+<div>
+</p>
+
+<table>
+    <tr>
+        {% for Heading in Week1TableHeaders %}
+            <th>{{ Heading }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for Row in Week1List %}
+        <tr>
+            {% for Collumn in Row %}
+                <td>{{ Collumn }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<table>
+    <tr>
+        {% for Heading in Week2TableHeaders %}
+            <th>{{ Heading }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for Row in Week2List %}
+        <tr>
+            {% for Collumn in Row %}
+                <td>{{ Collumn }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<table>
+    <tr>
+        {% for Heading in Week3TableHeaders %}
+            <th>{{ Heading }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for Row in Week3List %}
+        <tr>
+            {% for Collumn in Row %}
+                <td>{{ Collumn }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<table>
+    <tr>
+        {% for Heading in Week4TableHeaders %}
+            <th>{{ Heading }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for Row in Week4List %}
+        <tr>
+            {% for Collumn in Row %}
+                <td>{{ Collumn }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<table>
+    <tr>
+        {% for Heading in Week5TableHeaders %}
+            <th>{{ Heading }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for Row in Week5List %}
+        <tr>
+            {% for Collumn in Row %}
+                <td>{{ Collumn }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>

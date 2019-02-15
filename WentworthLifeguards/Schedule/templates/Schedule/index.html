@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Schedule/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: black;
+            color: #FFFFFF;
+        }
+
+        #content-main .item-1,
+        #content-main .item-2,
+        #content-main .item-3 {
+            text-align: center;
+	        position: absolute;
+            display: block;
+            bottom: 60%;
+            width: 50%;
+            font-size: 20px;
+	        animation-duration: 20s;
+	        animation-timing-function: ease-in-out;
+	        animation-iteration-count: infinite;
+        }
+
+        #content-main .item-1{
+	        animation-name: anim-1;
+        }
+
+        #content-main .item-2{
+	        animation-name: anim-2;
+        }
+
+        #content-main .item-3{
+        	animation-name: anim-3;
+        }
+
+        @keyframes anim-1 {
+        	0%, 8.3% { left: -100%; opacity: 0; }
+            8.3%,25% { left: 25%; opacity: 1; }
+            33.33%, 100% { left: 110%; opacity: 0; }
+        }
+
+        @keyframes anim-2 {
+	        0%, 33.33% { left: -100%; opacity: 0; }
+            41.63%, 58.29% { left: 25%; opacity: 1; }
+            66.66%, 100% { left: 110%; opacity: 0; }
+        }
+
+        @keyframes anim-3 {
+	        0%, 66.66% { left: -100%; opacity: 0; }
+            74.96%, 91.62% { left: 25%; opacity: 1; }
+            100% { left: 110%; opacity: 0; }
+        }
+    </style>
+    <title>Lifeguard Manager</title>
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a class="active" href="{% url 'index' %}" style="color: black">Home</a></li>
+        <li><a href="{% url 'rota' %}">Rota</a></li>
+        <li><a href="{% url 'manage' %}">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color: white;">Welcome, {{ user.first_name }}</li>
+
+        {% else %}
+            <li style="float: right"><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+
+<div id="content-main">
+    <h1 style="position: absolute; left: 34%; top: 10%;"> Lifeguard Management </h1>
+    <p class="item-1">
+        Lifeguard Manager is the perfect tool to manage your shifts.
+    </p>
+    <p class="item-2">
+        By logging on, you are able to access your shift manager and the staff rota for the coming month.
+    </p>
+    <p class="item-3">
+        You can the request changes to the current rota, and make yourself available for shifts in the coming month.
+    </p>
+
+</div>
+
+<div id="headerimg">
+    <img src="{% static 'Schedule/test1.png' %}">
+</div>
+
+</body>
+</html>

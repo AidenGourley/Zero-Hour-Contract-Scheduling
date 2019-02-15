@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Schedule/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Shift Management Page</title>
+    <style>
+        body {
+            padding-left: 1%;
+        }
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'rota' %}">Rota</a></li>
+        <li><a class="active" href="{% url 'manage' %}" style="color: black">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right; color: white;"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color: white;">Welcome, {{ user.first_name }}</li>
+
+        {% else %}
+            <li style="float: right"><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<h1>Staff's Shift Management Page</h1>
+
+
+<div id="shiftcoverrequest">
+
+    <p>Set Availability
+        <form action="/manage" method="post">
+            {% csrf_token %}
+            {{ SetAvailability }}
+            <input type="submit" value="Submit" name = "Set Availability">
+        </form>
+    </p>
+    <p>Cancel Availability
+        <form action="/manage" method="post">
+            {% csrf_token %}
+            {{ CancelAvailability }}
+            <input type="submit" value="Submit" name = "Cancel Availability">
+        </form>
+    </p>
+    <p><br><br>
+    You are currently available for the following shifts:
+        <ul>
+        {% for i in ShiftsAvailable %}
+            <li>
+                {{ i }}
+            </li>
+        {% endfor %}
+        </ul>
+    </p>
+</div>
+
+
+</body>
+</html>

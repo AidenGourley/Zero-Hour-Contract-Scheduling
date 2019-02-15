@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Schedule/style.css' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Manage</title>
+
+    <style>
+.wrap {
+    width: 100%;
+    height: 100vh;
+}
+
+.floatleft {
+    float:left;
+    width: 50%;
+    height: 100%;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 15px;
+}
+
+.floatright {
+    float: right;
+    background-color: #ffffff;
+    height: 100%;
+    width: 50%;
+}
+
+.helptext{
+  visibility: hidden;
+}
+
+
+
+
+
+.wrap .floatleft ul {
+    visibility: hidden;
+    position: fixed;;
+}
+
+button {
+            position: absolute;
+            right: 20%;
+            border-radius: 0px;
+            border-color:#000000;
+            border-style: solid;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            color: #000000;
+            font-family: "Century Gothic";
+            font-size: 14.5px;
+        }
+
+.floatright input[type=submit] {
+
+            border-radius: 0px;
+            border-color:#000000;
+            border-style: solid;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+            color: #000000;
+            font-family: "Century Gothic";
+            font-size: 14.5px;
+}
+
+.floatleft input[type=submit] {
+
+            border-radius: 0px;
+            border-color:#FFFFFF;
+            border-style: solid;
+            background-color: #000000;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-family: "Century Gothic";
+            font-size: 14.5px;
+}
+
+
+
+.floatright div {
+    border-style: solid;
+    border-color: black;
+
+}
+
+
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'rota' %}">Rota</a></li>
+        <li><a class="active" href="{% url 'manage' %}" style="color: black">Manage</a></li>
+        {% if user.is_authenticated %}
+            <li style="float: right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li style="float: right; text-align: center; display: block; padding: 14px 20px; color: white;">Welcome, {{ user.first_name }}</li>
+
+        {% else %}
+            <li style="float: right"><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+
+<div class="wrap">
+
+    <div class="floatleft">
+        <h1 style="text-align: center;"> Account Management </h1>
+        <div style="float: left; height: 100%; width: 60%; padding-left: 2%">
+
+            Add Account
+            <form action="/manage" method="post" style="align-items: center;">
+                {% csrf_token %}
+                {{ UserRegPt1.as_p }}
+                {{ UserRegPt2.as_p }}
+                <input type="submit" value="Create User" name="Create User" />
+            </form>
+        </div>
+        <div style="float: right; height: 100%; width: 38%;">
+            <h2 style="text-align: center">Remove Account</h2>
+            <form action="/manage" method="post" style="align-items: center;">
+                {% csrf_token %}
+                {{ UserRemove.as_p }}
+                <input type="submit" value="Remove User" name="Remove User" />
+            </form>
+        </div>
+    </div>
+
+
+    <div class="floatright" style="">
+        <h1 style="text-align: center;">Shift Management</h1>
+        <div style="float: left; height: 72%; width: 50%; padding-left: 2%; border-color: transparent">
+        Add Shift <br>
+        Time Format: HH:MM (e.g. 09:00)
+        <form action="/manage" method="post" style="">
+                {% csrf_token %}
+                {{ ShiftAdd.as_p }}
+                {{ ShiftAdd.errors }}
+
+                <input type="submit" value="Add Shift" name="Add Shift" />
+            </form>
+        <br>
+        Remove Shift
+        <form action="/manage" method="post">
+            {% csrf_token %}
+            {{ ShiftRemove.as_p }}
+            <input type="submit" value="Remove Shift" name="Remove Shift">
+        </form>
+        </div>
+        <div style="float: right; height: 72%; width: 46%; border-color: transparent">
+        <p>Generate Provisional Rota
+        <form action="/manage" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Generate Rota" name = "Generate Rota">
+        </form>
+        </p>
+        <p>View Provisional Rota
+        <form action="/provisionalrota" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Provisional Rota" name = "Provisional Rota">
+        </form>
+        </p>
+        <p>
+        Lock in Provisional Rota
+        <form action="/manage" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Lock In Rota" name="Lock In Rota" style="background-color: indianred">
+        </form>
+        </p>
+        (By locking in this rota, the current rota will be deleted with the new one displayed, given that a new
+         rota has been created). However, this action can only be completed when the old rota is out of date.
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>
