@@ -1,4 +1,7 @@
 # Lifeguard Management
+
+https://www.aidengourley.com/static/mainPage/other/CasualContractSchedulingDevelopmentProcessDocumentation.pdf
+
 A very common time-consuming exercise for management, particularly within corporations that operate shift-based working hours, is the scheduling that takes place, usually by hand. 
 The purpose of this web application is to reduce the time management spend on this task, while ensuring reference and changes can be accommodated for each stakeholder. The manager will build the timetable they require and publish the shifts they require to be filled. Each employee will have an individual account with which they are able to choose shifts they would like to be selected for. The manager has an option to choose when to run the scheduler and commit the changes to the following month's schedule.
 
