@@ -1,4 +1,4 @@
-# Lifeguard Management
+# Zero Hour COntract Scheduling
 
 https://www.aidengourley.com/static/mainPage/other/CasualContractSchedulingDevelopmentProcessDocumentation.pdf
 
