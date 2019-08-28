@@ -1,4 +1,4 @@
-# Zero Hour COntract Scheduling
+# Zero Hour Contract Scheduling
 
 https://www.aidengourley.com/static/mainPage/other/CasualContractSchedulingDevelopmentProcessDocumentation.pdf
 
